@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday, My Love!</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font family -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Dancing+Script:wght@400..700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fce7f3; /* Light Pink background */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        h1, h2 {
+            font-family: 'Dancing Script', cursive; /* A romantic script font */
+        }
+        /* Custom scrollbar for aesthetics */
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: #f472b6; /* Pink-500 */
+            border-radius: 6px;
+            border: 3px solid #fce7f3;
+        }
+        body::-webkit-scrollbar-track {
+            background-color: #fce7f3;
+        }
+
+        /* Keyframe for content fade-in on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Heart Particle Style */
+        .heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ec4899; /* Pink-500 */
+            border-radius: 50%;
+            transform: rotate(-45deg);
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            animation: float-up 4s ease-out forwards;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ec4899;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -50%;
+            left: 0;
+        }
+        .heart::after {
+            left: 50%;
+            top: 0;
+        }
+        @keyframes float-up {
+            0% { transform: translateY(0) scale(1) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-50vh) scale(0.5) rotate(-45deg); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Heart Container for Particles -->
+    <div id="heart-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50"></div>
+
+    <!-- Header & Countdown Section -->
+    <header id="hero" class="relative min-h-screen flex flex-col justify-center items-center p-6 text-center bg-pink-500 shadow-xl rounded-b-3xl overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-pink-400 to-fuchsia-600 opacity-80"></div>
+        <div class="relative z-10 text-white p-6 md:p-12 bg-white/20 backdrop-blur-sm rounded-3xl shadow-2xl transition duration-700 ease-in-out transform hover:scale-105">
+            <h1 class="text-5xl md:text-8xl font-bold tracking-tight mb-4 animate-pulse">
+                Happy 20th Birthday, Loveeyy!
+            </h1>
+            <p class="text-lg md:text-2xl mb-8 font-light italic">
+                Ready ka na? Scroll ka lang dyan, I love youu!!
+            </p>
+
+            <!-- Countdown Timer -->
+            <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 text-white font-extrabold text-shadow-lg">
+                <div class="bg-white/30 p-3 rounded-lg shadow-lg">
+                    <span id="days" class="text-3xl md:text-5xl block">00</span>
+                    <span class="text-xs md:text-sm">Days</span>
+                </div>
+                <div class="bg-white/30 p-3 rounded-lg shadow-lg">
+                    <span id="hours" class="text-3xl md:text-5xl block">00</span>
+                    <span class="text-xs md:text-sm">Hours</span>
+                </div>
+                <div class="bg-white/30 p-3 rounded-lg shadow-lg">
+                    <span id="minutes" class="text-3xl md:text-5xl block">00</span>
+                    <span class="text-xs md:text-sm">Minutes</span>
+                </div>
+                <div class="bg-white/30 p-3 rounded-lg shadow-lg">
+                    <span id="seconds" class="text-3xl md:text-5xl block">00</span>
+                    <span class="text-xs md:text-sm">Seconds</span>
+                </div>
+            </div>
+
+            <p id="birthday-message" class="mt-8 text-xl text-yellow-200 hidden">IT'S YOUR DAY! Let the celebrations begin!</p>
+        </div>
+        <a href="#reasons" class="mt-12 text-pink-500 bg-white hover:bg-pink-100 font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-110">
+            See Your Surprises <span class="text-lg">&#x2764;</span>
+        </a>
+    </header>
+
+    <!-- 20 Reasons Why I Love You Section -->
+    <section id="reasons" class="container mx-auto p-6 py-16 fade-in">
+        <h2 class="text-4xl md:text-6xl text-center text-pink-600 mb-12 font-bold tracking-tight">
+            20 Reasons Why I Love You (It's Your 20th!)
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Reason Cards - The content will be updated by the user -->
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">01.</p>
+                <p class="text-lg font-medium">I love you, Hanna, kasi kahit simpleng bagay lang, napapasaya mo ako sobra.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">02.</p>
+                <p class="text-lg font-medium">The way you always encourage me to be my best self.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">03.</p>
+                <p class="text-lg font-medium">Your kindness and compassion towards everyone you meet.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">04.</p>
+                <p class="text-lg font-medium">The passion you put into your goals.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">05.</p>
+                <p class="text-lg font-medium">How smart and insightful you are in every conversation.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">06.</p>
+                <p class="text-lg font-medium">Our spontaneous adventures and silly jokes.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">07.</p>
+                <p class="text-lg font-medium">I love you kasi ikaw yung peace ko sa araw-araw na gulo ng mundo.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">08.</p>
+                <p class="text-lg font-medium">Your comfort is my favorite place to be.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">09.</p>
+                <p class="text-lg font-medium">You make even the most boring days fun.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">10.</p>
+                <p class="text-lg font-medium">Your unique style and confidence.</p>
+            </div>
+             <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">11.</p>
+                <p class="text-lg font-medium">I love you kasi you support me in everything, lalo na pag stressed ako sa thesis.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">12.</p>
+                <p class="text-lg font-medium">I love you kasi you care about the small details, like kung kumain na ba ako or kung okay ako.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">13.</p>
+                <p class="text-lg font-medium">I love you kasi you make me feel loved and appreciated kahit wala akong ginagawa.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">14.</p>
+                <p class="text-lg font-medium">Your beautiful, optimistic view of the world.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">15.</p>
+                <p class="text-lg font-medium">I love you kasi kahit mood swings ka minsan, you’re still the prettiest for me.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">16.</p>
+                <p class="text-lg font-medium">The cute way you make your kupal face.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">17.</p>
+                <p class="text-lg font-medium">You inspire me to try new things constantly.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">18.</p>
+                <p class="text-lg font-medium">You always know exactly what snack I'm craving.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">19.</p>
+                <p class="text-lg font-medium">I love how much you love your family and friends.</p>
+            </div>
+            <div class="reason-card fade-in bg-white p-6 rounded-xl shadow-xl border-t-4 border-pink-400 hover:shadow-2xl transition duration-300 transform hover:translate-y-[-5px]">
+                <p class="text-pink-500 text-3xl font-extrabold mb-2">20.</p>
+                <p class="text-lg font-medium">Because you are, and always will be, my forever person.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memories Section -->
+    <section id="memories" class="container mx-auto p-6 py-16 fade-in">
+        <h2 class="text-4xl md:text-6xl text-center text-pink-600 mb-12 font-bold tracking-tight">
+            Our Favorite Memories Together
+        </h2>
+        <p class="text-center text-lg italic text-pink-700 mb-10">
+            Click on the cards to see the full photo/video!
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Memory Card 1 - Your Photo (Local File) -->
+            <div class="memory-card fade-in group bg-white rounded-xl shadow-xl overflow-hidden cursor-pointer transform hover:scale-[1.02] transition duration-300">
+                <!-- *** ACTION: PLACE your file named 'love.jpg' inside a subfolder named 'images' *** -->
+                <img src="images/love.jpg" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffbbd8/9e1e4f?text=Photo+Not+Found+in+images/love.jpg'" 
+                     alt="Our First Memory" 
+                     class="w-full h-64 object-cover group-hover:opacity-80 transition duration-300">
+                <div class="p-4">
+                    <h3 class="font-semibold text-xl text-pink-600">First beach</h3>
+                    <p class="text-sm text-gray-500"></p>
+                </div>
+            </div>
+
+            <!-- Memory Card 2 - Embedded Trip Video -->
+            <div class="memory-card fade-in group bg-white rounded-xl shadow-xl overflow-hidden cursor-pointer transform hover:scale-[1.02] transition duration-300">
+                <!-- Video Embed Container - Using h-64 for consistent card height in the grid -->
+                <div class="w-full h-64 rounded-t-xl overflow-hidden">
+                    <iframe 
+                        class="w-full h-full" 
+                        src="https://www.youtube.com/embed/vbSCZuidIgY?rel=0&amp;autoplay=0&amp;mute=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-xl text-pink-600">That Trip We Took (Watch Our Video!)</h3>
+                    <p class="text-sm text-gray-500">Our favorite video clip from the summer vacation is embedded above. Enjoy the memory!</p>
+                </div>
+            </div>
+
+            <!-- Memory Card 3 - Your Photo (Local File) -->
+            <div class="memory-card fade-in group bg-white rounded-xl shadow-xl overflow-hidden cursor-pointer transform hover:scale-[1.02] transition duration-300">
+                <!-- *** ACTION: PLACE your file named 'wolf.jpg' inside a subfolder named 'images' *** -->
+                <img src="images/wolf.jpg" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffbbd8/9e1e4f?text=Photo+Not+Found+in+images/wolf.jpg'" 
+                     alt="Just Being Us" 
+                     class="w-full h-64 object-cover group-hover:opacity-80 transition duration-300">
+                <div class="p-4">
+                    <h3 class="font-semibold text-xl text-pink-600">A Fav Photo of us</h3>
+                    <p class="text-sm text-gray-500">Wolfgang Date with u</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Friend Greetings Section -->
+    <section id="greetings" class="container mx-auto p-6 py-16 fade-in">
+        <h2 class="text-4xl md:text-6xl text-center text-pink-600 mb-12 font-bold tracking-tight">
+            Surprise Video Messages from Your Amazing Friends & Loved ones!
+        </h2>
+        <p class="text-center text-lg italic text-pink-700 mb-10">
+            They all wanted to wish you a Happy 20th! Watch their messages below.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Video Greeting 1: YouTube Embed - Jenny (ID: MENoBO8_kz0) -->
+            <div class="fade-in bg-pink-100 p-6 rounded-xl shadow-2xl border-t-4 border-pink-500 transition duration-300">
+                <h3 class="text-2xl font-semibold text-pink-700 mb-4">Video from Jenny</h3>
+                <div class="rounded-lg overflow-hidden border border-pink-300 w-full aspect-video">
+                    <!-- ID: MENoBO8_kz0 -->
+                    <iframe 
+                        class="w-full h-full" 
+                        src="https://www.youtube.com/embed/MENoBO8_kz0?rel=0&amp;autoplay=0&amp;mute=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="mt-3 text-sm text-pink-700 font-medium text-center">
+                    Video successfully embedded for Jenny!
+                </p>
+            </div>
+            <!-- Video Greeting 2: YouTube Embed - Meryl (ID: iRi0OgJ-1tY) -->
+            <div class="fade-in bg-pink-100 p-6 rounded-xl shadow-2xl border-t-4 border-pink-500 transition duration-300">
+                <h3 class="text-2xl font-semibold text-pink-700 mb-4">Video from Meryl</h3>
+                <div class="rounded-lg overflow-hidden border border-pink-300 w-full aspect-video">
+                    <!-- ID: iRi0OgJ-1tY -->
+                    <iframe 
+                        class="w-full h-full" 
+                        src="https://www.youtube.com/embed/iRi0OgJ-1tY?rel=0&amp;autoplay=0&amp;mute=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="mt-3 text-sm text-gray-600 text-center">
+                    Video successfully embedded for Meryl!
+                </p>
+            </div>
+            <!-- Video Greeting 3: YouTube Embed - Inay <3 (ID: u-FokNuvSkI) -->
+            <div class="fade-in bg-pink-100 p-6 rounded-xl shadow-2xl border-t-4 border-pink-500 transition duration-300">
+                <h3 class="text-2xl font-semibold text-pink-700 mb-4">Video from Inay &lt;3 </h3>
+                <div class="rounded-lg overflow-hidden border border-pink-300 w-full aspect-video">
+                    <!-- ID: u-FokNuvSkI -->
+                    <iframe 
+                        class="w-full h-full" 
+                        src="https://www.youtube.com/embed/u-FokNuvSkI?rel=0&amp;autoplay=0&amp;mute=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="mt-3 text-sm text-gray-600 text-center">
+                    Video successfully embedded for Inay!
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- My Personal Letter Section -->
+    <section id="my-letter" class="container mx-auto p-6 py-16 fade-in">
+        <h2 class="text-4xl md:text-6xl text-center text-pink-600 mb-12 font-bold tracking-tight">
+            A Letter from My Heart, Just For You
+        </h2>
+        <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-4 border-pink-300/80 transform transition duration-500 hover:shadow-pink-300/50">
+            <div class="text-lg leading-relaxed text-gray-700">
+                <p class="mb-6 italic text-pink-500 font-medium">My Dearest Hanna,</p>
+
+                <!-- This is where you will write your personal letter. Keep it long and heartfelt! -->
+                <p class="mb-4">
+                    Hi lovee! Happy happy birthday to you!! I just wanna say thank you for being such a huge part of my life. Like legit, I can’t even imagine my days without you anymore. You make everything so much lighter and happier  even the small moments feel so special just ‘cause you’re in it.
+                </p>
+                <p class="mb-4">
+                    Thank you for always being so kind, so patient, and so full of love. You have this energy that makes everyone around you feel warm and appreciated, and grabe, I’m just so lucky that I get to experience that every day. You really are my comfort, my calm, my happiness all in one.
+                </p>
+                <p class="mb-4">
+                    I hope today reminds you how loved and appreciated you are, not just by me but by everyone who knows how amazing you are. You seriously deserve all the love, peace, the world, my Hanna.
+                    Keep shining, keep being the beautiful person that you are, and please never forget how proud I am of you always. I’ll always be your number one fan, cheering you on through everything.
+                </p>
+
+                <p class="mt-6 text-right font-semibold text-pink-600">With all my love, forever and always,</p>
+                <p class="text-right font-semibold text-pink-600">zorroar</p>
+                <div class="mt-4 text-xs text-center text-gray-400">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-pink-500 text-white p-6 text-center mt-12 rounded-t-3xl shadow-inner">
+        <p class="text-lg">&copy; 2025 Created with all my love, just for you. Happy 20th!</p>
+        <p class="text-sm mt-2">I love you more than words can say. &hearts;</p>
+    </footer>
+
+    <!-- JavaScript for Countdown, Animations, and Heart Particles -->
+    <script>
+        // --- 1. COUNTDOWN TIMER LOGIC ---
+        // Note: The date is currently Nov 8, 2025. Please change the year/date below if needed!
+        const birthdayDate = new Date("November 8, 2025 00:00:00").getTime();
+        const countdownElement = document.getElementById('countdown');
+        const messageElement = document.getElementById('birthday-message');
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = birthdayDate - now;
+
+            if (distance < 0) {
+                countdownElement.classList.add('hidden');
+                messageElement.classList.remove('hidden');
+                messageElement.classList.add('animate-bounce');
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            // Time calculations
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the results
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+        }
+
+        // Run countdown immediately and then every second
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // --- 2. SCROLL ANIMATION (Fade-in-up) ---
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // --- 3. HEART PARTICLE EFFECT ---
+        const heartContainer = document.getElementById('heart-container');
+
+        const createHeart = () => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Random start position near the bottom center of the screen
+            const startX = (window.innerWidth / 2) + (Math.random() - 0.5) * 200; // +/- 100px from center
+            const startY = window.innerHeight;
+            
+            heart.style.left = `${startX}px`;
+            heart.style.top = `${startY}px`;
+            heart.style.animationDuration = `${3 + Math.random() * 2}s`; // 3s to 5s duration
+            
+            // Random size variation
+            const size = 10 + Math.random() * 10; // 10px to 20px
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+
+            heartContainer.appendChild(heart);
+
+            // Clean up the heart element after its animation finishes
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Generate hearts on a timer
+        const heartInterval = setInterval(createHeart, 250); // Create a heart every 250ms
+
+        // Stop generating hearts after 20 seconds to prevent excessive elements
+        setTimeout(() => {
+            clearInterval(heartInterval);
+            console.log('Heart particle generation stopped.');
+        }, 20000); // 20 seconds
+    </script>
+</body>
+</html>
